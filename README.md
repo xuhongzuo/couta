@@ -1,5 +1,11 @@
-# COUTA  
-Implementation of an unsupervised time series anomaly detection model based on calibrated one-class classification. 
+# COUTA  - time series anomaly detection
+Implementation of an unsupervised time series anomaly detection model based on calibrated one-class classification.  
+The full paper, **"Calibrated One-class Classification for Unsupervised Time Series Anomaly
+Detection"** is available at [link]().  
+Please consider citing our paper if you find this repository useful. :wink:
+```
+bib files (TBD)
+```
 
 ## Environment  
 main packages
@@ -69,11 +75,11 @@ change the `--algo` argument to `COUTA_wto_umc`, `COUTA_wto_nac`, or `Canonical`
 ```
 python main.py --algo COUTA_wto_umc --data ASD
 ```
+use `script_effectiveness.sh` also produce detection results of ablated variants  
 
 ### Others
 As for the sensitivity test (4.6), please adjust the parameters in the yaml file.  
 As for the scalability test (4.7), the produced result files also contain execution time.  
-
 
 ## Competing methods
 All of the anomaly detectors in our paper are implemented in Python. We list their publicly available implementations below. 
