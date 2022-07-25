@@ -1,0 +1,80 @@
+ASD:
+  bias: 1
+  num_epochs: 40
+  emb_dim: 32
+  hidden_dims: 32
+  rep_hidden: 32
+  lr: 0.0001
+  batch_size: 64
+  dropout: 0.0
+  alpha: 0.1
+  neg_batch_ratio: 0.2
+  es: 0
+
+SMD:
+  bias: 0
+  num_epochs: 20
+  emb_dim: 16
+  hidden_dims: 16
+  rep_hidden: 16
+  lr: 0.0001
+  batch_size: 64
+  dropout: 0.0
+  alpha: 0.1
+  neg_batch_ratio: 0.2
+  es: 0
+
+WaQ:
+  bias: 1
+  num_epochs: 40
+  emb_dim: 16
+  hidden_dims: 16
+  rep_hidden: 16
+  lr: 0.0001
+  batch_size: 64
+  dropout: 0.0
+  alpha: 0.1
+  neg_batch_ratio: 0.2
+  es: 0
+
+SWaT:
+  bias: 1
+  num_epochs: 20
+  emb_dim: 16
+  hidden_dims: 16
+  rep_hidden: 16
+  lr: 0.0001
+  batch_size: 64
+  dropout: 0.0
+  alpha: 0.1
+  neg_batch_ratio: 0.2
+  es: 0
+
+
+DSADS:
+  bias: 0
+  num_epochs: 40
+  emb_dim: 64
+  hidden_dims: 64
+  rep_hidden: 64
+  lr: 0.0001
+  batch_size: 64
+  dropout: 0.0
+  alpha: 0.1
+  neg_batch_ratio: 0.2
+  es: 0
+
+
+Epilepsy:
+  bias: 1
+  num_epochs: 20
+  emb_dim: 16
+  hidden_dims: 16
+  rep_hidden: 16
+  lr: 0.0001
+  batch_size: 64
+  dropout: 0.0
+  alpha: 0.1
+  neg_batch_ratio: 0.2
+  es: 0
+

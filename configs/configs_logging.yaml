@@ -1,0 +1,92 @@
+version: 1
+disable_existing_loggers: True
+filename: &filename 1.log
+
+formatters:
+  tostrout:
+    format: "%(message)s"
+    # format: "%(asctime)s - %(levelname)-9s - %(filename)-8s : %(lineno)s line - %(message)s"
+#    datefmt: "%Y/%m/%d %H:%M:%S"
+  tofile:
+    format: "%(message)s"
+    # format: "%(asctime)s - %(levelname)-9s - %(filename)-8s : %(lineno)s line - %(message)s"
+
+handlers:
+  sh:
+    class: logging.StreamHandler
+    level: INFO
+    formatter: tostrout
+    stream: ext://sys.stdout
+
+  fh:
+    class: logging.handlers.TimedRotatingFileHandler
+    filename: *filename
+    interval: 1
+    backupCount: 2
+    when: D
+    level: INFO
+    formatter: tofile
+
+  fh_avg:
+    class: logging.handlers.TimedRotatingFileHandler
+    filename: *filename
+    interval: 1
+    backupCount: 2
+    when: D
+    level: INFO
+    formatter: tofile
+
+  fh_raw:
+    class: logging.handlers.TimedRotatingFileHandler
+    filename: *filename
+    interval: 1
+    backupCount: 2
+    when: D
+    level: INFO
+    formatter: tofile
+
+
+loggers:
+  logger_sh:
+    level: INFO
+    handlers: [sh]
+    #是否往上级Logger传递，如果为yes的话，root选择了两个logger，
+    # 这里的日志也会在两个logger的配置中输出，会重复。所以选No, 自己记录自己的日志。
+    propagate: no
+
+  logger_fh:
+    level: INFO
+    handlers: [fh,sh]
+    propagate: no
+
+  logger_fh_avg:
+    level: INFO
+    handlers: [fh_avg]
+    propagate: no
+
+  logger_fh_raw:
+    level: INFO
+    handlers: [fh_raw]
+    propagate: no
+
+#  logger_fh:
+#    level: INFO
+#    handlers: [fh]
+#    propagate: no
+#
+#  logger_fh_raw:
+#    level: INFO
+#    handlers: [fh]
+#    propagate: no
+
+
+# root is used to log into both sh and fh
+#logger_fh:
+#  level: INFO
+#  handlers: [sh,fh]
+#  propagate: no
+#
+#logger_fh_raw:
+#  level: INFO
+#  handlers: [sh,fh_raw]
+#  propagate: no
