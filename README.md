@@ -23,13 +23,13 @@ we provide a `requirements.txt` in our repository.
   
 ## Takeaways
 COUTA provides easy APIs in a sklearn style, that is, we can first instantiate the model class by giving the parameters
-```
+```python
 from src.algorithms.couta_algo import COUTA
 model_configs = {'sequence_length': 50, 'stride': 1}
 model = COUTA(**model_configs)
 ```
 then, the instantiated model can be used to fit and predict data, please use dataframes of pandas as input data
-```
+```python
 model.fit(train_df)
 score_dic = model.predict(test_df)
 score = score_dic['score_t']
@@ -57,14 +57,14 @@ The used datasets can be downloaded from:
 After handling the used datasets, you can use `main.py` to perform COUTA on different time series datasets, we use six datasets in our paper, and `--data` can be chosen from `[ASD, SMD, SWaT, WaQ, Epilepsy, DSADS]`.
 
 For example, perform COUTA on the ASD dataset by
-```
+```shell
 python main.py --data ASD --algo COUTA
 ```
 or you can directly use `script_effectivenss.sh`  
 
 ### Generalization test (4.3)
 we include the used synthetic datasets in `data_processed/`
-```
+```shell
 python main_showcase.py --type point
 python main_showcase.py --type pattern
 ```
@@ -76,7 +76,7 @@ use `main.py` to perform COUTA on these datasets, or directly execute `script_ro
 
 ### Ablation study (4.5)
 change the `--algo` argument to `COUTA_wto_umc`, `COUTA_wto_nac`, or `Canonical`, e.g., 
-```
+```shell
 python main.py --algo COUTA_wto_umc --data ASD
 ```
 use `script_effectiveness.sh` also produce detection results of ablated variants  
