@@ -7,6 +7,7 @@ Please consider citing our paper if you find this repository useful. :wink:
 bib files (TBD)
 ```
 
+  
 ## Environment  
 main packages
 ```  
@@ -17,8 +18,9 @@ scipy==1.4.1
 scikit-learn==1.1.1  
 ```  
 we provide a `requirements.txt` in our repository.
-
-
+  
+  
+  
 ## Takeaways
 COUTA provides easy APIs in a sklearn style, that is, we can first instantiate the model class by giving the parameters
 ```
@@ -34,8 +36,9 @@ score = score_dic['score_t']
 ```
 We use a dictionary as our prediction output for the sake of consistency with [an evaluation work of time series anomaly detection](https://github.com/astha-chem/mvts-ano-eval)  
 `score_t` is a vector that indicates anomaly scores of each time observation in the testing dataframe, and a higher value represents a higher likehood to be an anomaly
-
-
+  
+  
+  
 ## Datasets used in our paper
 *Due to the license issue of these datasets, we provide download links here, but we offer the preprocessing scripts in `data_preprocessing.ipynb`, and you can easily generate processed datasets that can be directly fed into our pipeline by downloading original data and running this notebook. *  
 
@@ -46,8 +49,9 @@ The used datasets can be downloaded from:
 - WaQ   https://www.spotseven.de/gecco/gecco-challenge  
 - DSADS https://github.com/zhangyuxin621/AMSL  
 - Epilepsy https://github.com/boschresearch/NeuTraL-AD/  
-
-
+  
+  
+  
 ## Reproduction of experiment results
 ### Experiments of the effectivness (4.2)
 After handling the used datasets, you can use `main.py` to perform COUTA on different time series datasets, we use six datasets in our paper, and `--data` can be chosen from `[ASD, SMD, SWaT, WaQ, Epilepsy, DSADS]`.
@@ -80,7 +84,9 @@ use `script_effectiveness.sh` also produce detection results of ablated variants
 ### Others
 As for the sensitivity test (4.6), please adjust the parameters in the yaml file.  
 As for the scalability test (4.7), the produced result files also contain execution time.  
-
+  
+  
+  
 ## Competing methods
 All of the anomaly detectors in our paper are implemented in Python. We list their publicly available implementations below. 
 - `OCSVM` and `ECOD` :  we directly use pyod (python library of anomaly detection approaches); 
