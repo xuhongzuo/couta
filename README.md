@@ -46,7 +46,7 @@ We use a dictionary as our prediction output for the sake of consistency with an
   
   
 ## Datasets used in our paper
-*Due to the license issue of these datasets, we provide download links here, but we offer the preprocessing scripts in `data_preprocessing.ipynb`, and you can easily generate processed datasets that can be directly fed into our pipeline by downloading original data and running this notebook. *  
+* Due to the license issue of these datasets, we provide download links here. We also offer the preprocessing script in `data_preprocessing.ipynb`. You can easily generate processed datasets that can be directly fed into our pipeline by downloading original data and running this notebook. *  
 
 The used datasets can be downloaded from:  
 - ASD   https://github.com/zhhlee/InterFusion  
