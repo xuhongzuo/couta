@@ -1,10 +1,16 @@
 # COUTA  - time series anomaly detection
 Implementation of Calibrated One-class classification-based Unsupervised Time series Anomaly detection (COUTA for short).  
 The full paper, **"Calibrated One-class Classification for Unsupervised Time Series Anomaly
-Detection"** is available at [link, TBD]().  
+Detection"** is available at [link](https://arxiv.org/abs/2207.12201).  
 Please consider citing our paper if you find this repository useful. :wink:
 ```
-bib files (TBD)
+@article{xu2022deep,
+  title={Calibrated One-class Classification for Unsupervised Time Series Anomaly
+Detection},
+  author={Xu, Hongzuo and Wang, Yijie and Jian, Songlei and Liao, Qing and Wang, Yongjun and Pang, Guansong},
+  journal={arXiv preprint arXiv:2207.12201},
+  year={2022}
+}
 ```
 
   
