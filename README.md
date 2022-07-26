@@ -40,7 +40,7 @@ model.fit(train_df)
 score_dic = model.predict(test_df)
 score = score_dic['score_t']
 ```
-We use a dictionary as our prediction output for the sake of consistency with [an evaluation work of time series anomaly detection](https://github.com/astha-chem/mvts-ano-eval)  
+We use a dictionary as our prediction output for the sake of consistency with an evaluation work of time series anomaly detection [link](https://github.com/astha-chem/mvts-ano-eval)  
 `score_t` is a vector that indicates anomaly scores of each time observation in the testing dataframe, and a higher value represents a higher likehood to be an anomaly
   
   
