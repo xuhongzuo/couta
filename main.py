@@ -12,18 +12,16 @@ from main_utils import prepare, run, get_data_lst
 
 # -------------------------------- argument parser --------------------------------#
 parser = argparse.ArgumentParser()
-parser.add_argument('--data_dir', type=str, default=f'data_processed_contam/')
+parser.add_argument('--data_dir', type=str, default=f'data_processed/')
 parser.add_argument('--results_dir', type=str, default='@results/', help='dataset name')
-
-parser.add_argument('--data', type=str, default='EP_contam_0.0',
-                    help='dataset name')
-parser.add_argument("--entities", type=str, default='FULL',
+parser.add_argument('--data', type=str, default='ASD',help='dataset name')
+parser.add_argument("--entities", type=str, default='omi-1',
                     help='FULL represents all the entities, or a list of entity names split by comma')
 parser.add_argument('--algo', type=str, default='COUTA',
                     choices=['COUTA', 'COUTA_wto_nac', 'COUTA_wto_umc', 'Canonical'])
 
 parser.add_argument('--device', help='torch device', type=str, default='cuda', choices=['cuda', 'cpu'])
-parser.add_argument('--runs', help='', type=int, default='5')
+parser.add_argument('--runs', help='', type=int, default='1')
 parser.add_argument('--log_path', type=str, default='log/')
 parser.add_argument('--save_pred', action='store_true', default=False)
 parser.add_argument('--flag', type=str, default='')

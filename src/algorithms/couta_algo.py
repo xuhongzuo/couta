@@ -11,7 +11,6 @@ import torch
 from torch.utils.data import Dataset
 from numpy.random import RandomState
 from torch.utils.data import DataLoader
-from pyod.models.copod import COPOD
 from src.algorithms.algorithm_utils import EarlyStopping, get_sub_seqs
 from src.algorithms.net import NetModule
 
@@ -259,12 +258,13 @@ class COUTA:
                         val_loss.append(loss)
                 val_loss = torch.mean(torch.stack(val_loss)).data.cpu().item()
 
-            self.log_func(
-                f'|>>> epoch: {i+1:02}  |   loss: {epoch_loss:.6f}, '
-                f'loss_oc: {epoch_loss_oc:.6f}, '
-                # f'loss_ssl: {epoch_loss_ssl:.6f}, <<<|'
-                f'val_loss: {val_loss:.6f}'
-            )
+            if (i+1) % 10 == 0:
+                self.log_func(
+                    f'|>>> epoch: {i+1:02}  |   loss: {epoch_loss:.6f}, '
+                    f'loss_oc: {epoch_loss_oc:.6f}, '
+                    # f'loss_ssl: {epoch_loss_ssl:.6f}, <<<|'
+                    f'val_loss: {val_loss:.6f}'
+                )
 
             if self.es:
                 # early_metric = val_loss+epoch_loss if val_loader is not None else epoch_loss
@@ -428,8 +428,6 @@ def create_batch_neg(batch_seqs, max_cut_ratio=0.5, seed=0, return_mul_label=Fal
         return batch_neg, neg_labels
 
 
-
-
 class SubseqData(Dataset):
     def __init__(self, x, y=None, w1=None, w2=None):
         self.sub_seqs = x
@@ -474,6 +472,7 @@ class DSVDDUncLoss(torch.nn.Module):
         elif self.reduction == 'sum':
             loss = torch.sum(loss)
         return loss
+
 
 class DSVDDLoss(torch.nn.Module):
     def __init__(self, c, reduction='mean'):
