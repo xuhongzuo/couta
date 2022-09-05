@@ -28,7 +28,7 @@ we provide a `requirements.txt` in our repository.
   
   
 ## Takeaways
-COUTA provides easy APIs in a sklearn style, that is, we can first instantiate the model class by giving the parameters
+COUTA provides easy APIs in a sklearn/[pyod](https://github.com/yzhao062/Pyod) style, that is, we can first instantiate the model class by giving the parameters
 ```python
 from src.algorithms.couta_algo import COUTA
 model_configs = {'sequence_length': 50, 'stride': 1}
@@ -46,7 +46,7 @@ We use a dictionary as our prediction output for the sake of consistency with an
   
   
 ## Datasets used in our paper
-*Due to the license issue of these datasets, we provide download links here, but we offer the preprocessing scripts in `data_preprocessing.ipynb`, and you can easily generate processed datasets that can be directly fed into our pipeline by downloading original data and running this notebook. *  
+* Due to the license issue of these datasets, we provide download links here. We also offer the preprocessing script in `data_preprocessing.ipynb`. You can easily generate processed datasets that can be directly fed into our pipeline by downloading original data and running this notebook. *  
 
 The used datasets can be downloaded from:  
 - ASD   https://github.com/zhhlee/InterFusion  
@@ -95,7 +95,7 @@ As for the scalability test (4.7), the produced result files also contain execut
   
 ## Competing methods
 All of the anomaly detectors in our paper are implemented in Python. We list their publicly available implementations below. 
-- `OCSVM` and `ECOD` :  we directly use pyod (python library of anomaly detection approaches); 
+- `OCSVM` and `ECOD` :  we directly use [pyod](https://github.com/yzhao062/Pyod) (python library of anomaly detection approaches); 
 - `GOAD`: https://github.com/lironber/GOAD 
 - `DSVDD`: https://github.com/lukasruff/Deep-SVDD-PyTorch 
 - `USAD`: https://github.com/hoo2257/USAD-Anomaly-Detecting-Algorithm

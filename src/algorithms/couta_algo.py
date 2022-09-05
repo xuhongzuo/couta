@@ -304,7 +304,7 @@ class COUTA:
         self.net.eval()
         with torch.no_grad():
             for x in dataloader:
-                x = x.float().to('cuda')
+                x = x.float().to(self.device)
                 x_output = self.net(x)
                 representation_lst.append(x_output[0])
                 if self.umc:
