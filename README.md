@@ -28,6 +28,8 @@ we provide a `requirements.txt` in our repository.
   
   
 ## Takeaways
+
+### APIs
 COUTA provides easy APIs in a sklearn/[pyod](https://github.com/yzhao062/Pyod) style, that is, we can first instantiate the model class by giving the parameters
 ```python
 from src.algorithms.couta_algo import COUTA
@@ -43,7 +45,25 @@ score = score_dic['score_t']
 We use a dictionary as our prediction output for the sake of consistency with an evaluation work of time series anomaly detection [link](https://github.com/astha-chem/mvts-ano-eval)  
 `score_t` is a vector that indicates anomaly scores of each time observation in the testing dataframe, and a higher value represents a higher likehood to be an anomaly
   
-  
+### model save and load
+
+Training by feeding the `save_model_path` parameter, the model will be saved in this path
+```python
+from src.algorithms.couta_algo import COUTA
+path = 'saved_models/couta.pth'
+model_configs = {'sequence_length': 50, 'stride': 1, 'save_model_path': path}
+model = COUTA(**model_configs)
+model.fit(train_df)
+```
+Then, couta can be used without fitting. 
+```python
+from src.algorithms.couta_algo import COUTA
+path = 'saved_models/couta.pth'
+model_configs = {'load_model_path': path}
+model = COUTA(**model_configs)
+model.predict(test_df)
+```
+
   
 ## Datasets used in our paper
 * Due to the license issue of these datasets, we provide download links here. We also offer the preprocessing script in `data_preprocessing.ipynb`. You can easily generate processed datasets that can be directly fed into our pipeline by downloading original data and running this notebook. *  

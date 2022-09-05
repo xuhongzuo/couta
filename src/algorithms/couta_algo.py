@@ -23,6 +23,7 @@ class COUTA:
                  alpha=0.1, neg_batch_ratio=0.2, es=False, train_val_pc=0.25,
                  seed=0, device='cuda',
                  logger=None, model_dir='couta_model/',
+                 save_model_path=None, load_model_path=None,
                  nac=True, umc=True
                  ):
         """
@@ -117,9 +118,11 @@ class COUTA:
             torch.cuda.manual_seed(seed)
             torch.backends.cudnn.deterministic = True
 
+        self.save_model_path = save_model_path
+        self.load_model_path = load_model_path
+
         self.net = None
         self.c = None
-        self.train_seqs = None
         self.test_df = None
         self.test_labels = None
 
@@ -150,25 +153,16 @@ class COUTA:
         else:
             train_seqs = sequences
             val_seqs = None
-        self.train_seqs = train_seqs
 
-        self.net = NetModule(
-            input_dim=dim,
-            hidden_dims=self.hidden_dims,
-            emb_dim=self.emb_dim,
-            pretext_hidden=self.pretext_hidden,
-            rep_hidden=self.rep_hidden,
-            out_dim=1,
-            kernel_size=self.kernel_size,
-            dropout=self.dropout,
-            linear_bias=self.bias,
-            tcn_bias=self.bias,
-            pretext=True if self.nac else False,
-            dup=True if self.umc else False
-        )
-        self.net.to(self.device)
+        self.net = self.network_init(dim)
         self.set_c(train_seqs)
         self.net = self.train(self.net, train_seqs, val_seqs)
+
+        if self.save_model_path is not None:
+            os.makedirs(os.path.split(self.save_model_path)[0], exist_ok=True)
+            state = {'model_state': self.net.state_dict(), 'c': self.c}
+            torch.save(state, self.save_model_path)
+
         return
 
     def train(self, net, train_seqs, val_seqs=None):
@@ -299,6 +293,12 @@ class COUTA:
         test_dataset = SubseqData(test_sub_seqs)
         dataloader = DataLoader(dataset=test_dataset, batch_size=self.batch_size, drop_last=False, shuffle=False)
 
+        if self.load_model_path is not None:
+            state = torch.load(self.load_model_path)
+            self.net = self.network_init(data.shape[1])
+            self.net.load_state_dict(state['model_state'])
+            self.c = state['c']
+
         representation_lst = []
         representation_lst2 = []
         self.net.eval()
@@ -328,6 +328,24 @@ class COUTA:
                            }
 
         return predictions_dic
+
+    def network_init(self, dim):
+        net = NetModule(
+            input_dim=dim,
+            hidden_dims=self.hidden_dims,
+            emb_dim=self.emb_dim,
+            pretext_hidden=self.pretext_hidden,
+            rep_hidden=self.rep_hidden,
+            out_dim=1,
+            kernel_size=self.kernel_size,
+            dropout=self.dropout,
+            linear_bias=self.bias,
+            tcn_bias=self.bias,
+            pretext=True if self.nac else False,
+            dup=True if self.umc else False
+        )
+        net.to(self.device)
+        return net
 
     def set_c(self, seqs, eps=0.1):
         """Initializing the center for the hypersphere"""
