@@ -4,12 +4,15 @@ detection"** (COUTA for short).
 The full paper is available at [link](https://arxiv.org/abs/2207.12201).  
 Please consider citing our paper if you use this repository. :wink:
 ```
-@article{xu2022deep,
-  title={Calibrated One-class Classification for Unsupervised Time Series Anomaly
-Detection},
+@article{xu2024calibrated,
+  title={Calibrated one-class classification for unsupervised time series anomaly detection},
   author={Xu, Hongzuo and Wang, Yijie and Jian, Songlei and Liao, Qing and Wang, Yongjun and Pang, Guansong},
-  journal={arXiv preprint arXiv:2207.12201},
-  year={2022}
+  journal={IEEE Transactions on Knowledge and Data Engineering},
+  volume={36},
+  number={11},
+  pages={5723--5736},
+  year={2024},
+  publisher={IEEE}
 }
 ```
 
